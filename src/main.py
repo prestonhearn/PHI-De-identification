@@ -1,5 +1,6 @@
 import os
-from presidio_analyzer import AnalyzerEngine
+from Recognizer import Address
+from presidio_analyzer import AnalyzerEngine, PatternRecognizer
 from presidio_anonymizer import AnonymizerEngine
 from presidio_anonymizer.entities import OperatorConfig
 
@@ -12,18 +13,21 @@ with open(file_path, 'r') as file:
 analyzer = AnalyzerEngine()
 engine = AnonymizerEngine()
 
+custom_recognizer = Address()
+analyzer.registry.add_recognizer(custom_recognizer)
+
 results = analyzer.analyze(text=content,
-                           entities=["PERSON", "LOCATION", "US_SSN", "PHONE_NUMBER", "EMAIL_ADDRESS"],
+                           entities=["PERSON", "ADDRESS", "US_SSN", "PHONE_NUMBER", "EMAIL_ADDRESS"],
                            language='en')
 
 result = engine.anonymize(
     text=content,
     analyzer_results=results,
-    operators={"PERSON": OperatorConfig("redact"),
-               "LOCATION": OperatorConfig("redact"), 
-               "US_SSN": OperatorConfig("redact"), 
-               "PHONE_NUMBER": OperatorConfig("redact"), 
-               "EMAIL_ADDRESS": OperatorConfig("redact")},
+    operators={"PERSON": OperatorConfig("replace"),
+               "ADDRESS": OperatorConfig("replace"),
+               "US_SSN": OperatorConfig("replace"), 
+               "PHONE_NUMBER": OperatorConfig("replace"), 
+               "EMAIL_ADDRESS": OperatorConfig("replace")},
 )
 
 print(result)
