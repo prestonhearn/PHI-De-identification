@@ -1,5 +1,5 @@
 Patient: ******
-Date of Birth: <DOB>
+Date of Birth: ******
 Medical Record Number: 1234567
 Date of Visit: 10/26/2023
 Address: ******

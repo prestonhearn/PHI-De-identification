@@ -27,7 +27,7 @@ result = engine.anonymize(
     analyzer_results=results,
     operators={"PERSON": OperatorConfig("replace", {"new_value": "*" * 6}),
                "ADDRESS": OperatorConfig("replace", {"new_value": "*" * 6}),
-               "DOB": OperatorConfig("replace", {"new_value": "\nDate of Birth: <DOB>"}),
+               "DOB": OperatorConfig("replace", {"new_value": ("\nDate of Birth: " + "*" * 6)}),
                "US_SSN": OperatorConfig("replace", {"new_value": "*" * 6}), 
                "PHONE_NUMBER": OperatorConfig("replace", {"new_value": "*" * 6}), 
                "EMAIL_ADDRESS": OperatorConfig("replace", {"new_value": "*" * 6})},
