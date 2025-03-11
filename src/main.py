@@ -4,7 +4,7 @@ from presidio_analyzer import AnalyzerEngine, PatternRecognizer
 from presidio_anonymizer import AnonymizerEngine
 from presidio_anonymizer.entities import OperatorConfig
 
-file_path = os.path.join("." , "resources", "ehr JMS.txt")
+file_path = os.path.join("." , "src", "resources", "ehr JMS.txt")
 
 #"./resources/ehr JMS.txt"
 with open(file_path, 'r') as file:
