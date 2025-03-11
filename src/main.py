@@ -4,7 +4,7 @@ from presidio_analyzer import AnalyzerEngine, PatternRecognizer
 from presidio_anonymizer import AnonymizerEngine
 from presidio_anonymizer.entities import OperatorConfig
 
-file_path = os.path.join(".", "src", "resources", "ehr JMS.txt")
+file_path = os.path.join("." , "resources", "ehr JMS.txt")
 
 #"./resources/ehr JMS.txt"
 with open(file_path, 'r') as file:
@@ -25,12 +25,15 @@ results = analyzer.analyze(text=content,
 result = engine.anonymize(
     text=content,
     analyzer_results=results,
-    operators={"PERSON": OperatorConfig("replace"),
-               "ADDRESS": OperatorConfig("replace"),
+    operators={"PERSON": OperatorConfig("replace", {"new_value": "*" * len(results)}),
+               "ADDRESS": OperatorConfig("replace", {"new_value": "*" * len(results)}),
                "DOB": OperatorConfig("replace", {"new_value": "\nDate of Birth: <DOB>"}),
-               "US_SSN": OperatorConfig("replace"), 
-               "PHONE_NUMBER": OperatorConfig("replace"), 
-               "EMAIL_ADDRESS": OperatorConfig("replace")},
+               "US_SSN": OperatorConfig("replace", {"new_value": "*" * len(results)}), 
+               "PHONE_NUMBER": OperatorConfig("replace", {"new_value": "*" * len(results)}), 
+               "EMAIL_ADDRESS": OperatorConfig("replace", {"new_value": "*" * len(results)})},
+
 )
 
-print(result)
+with open("final_Result.txt", "w") as f:
+    f.write(result.text + "\n")
+
