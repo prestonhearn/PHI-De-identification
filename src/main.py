@@ -25,12 +25,16 @@ results = analyzer.analyze(text=content,
 result = engine.anonymize(
     text=content,
     analyzer_results=results,
-    operators={"PERSON": OperatorConfig("replace"),
-               "ADDRESS": OperatorConfig("replace"),
-               "DOB": OperatorConfig("replace", {"new_value": "\nDate of Birth: <DOB>"}),
-               "US_SSN": OperatorConfig("replace"), 
-               "PHONE_NUMBER": OperatorConfig("replace"), 
-               "EMAIL_ADDRESS": OperatorConfig("replace")},
+    operators={"PERSON": OperatorConfig("replace", {"new_value": "*" * 6}),
+               "ADDRESS": OperatorConfig("replace", {"new_value": "*" * 6}),
+               "DOB": OperatorConfig("replace", {"new_value": ("\nDate of Birth: " + "*" * 6)}),
+               "US_SSN": OperatorConfig("replace", {"new_value": "*" * 6}), 
+               "PHONE_NUMBER": OperatorConfig("replace", {"new_value": "*" * 6}), 
+               "EMAIL_ADDRESS": OperatorConfig("replace", {"new_value": "*" * 6})},
+
 )
 
-print(result)
+file_Result_File = os.path.join(".", "src", "resources", "final_Result.txt")
+with open(file_Result_File, "w") as f:
+    f.write(result.text + "\n")
+
