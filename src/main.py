@@ -11,7 +11,7 @@ with open(file_path, 'r') as file:
     content = file.read()
 
 analyzer = AnalyzerEngine()
-engine = AnonymizerEngine()
+anonymizer = AnonymizerEngine()
 
 address_rec = AddressRecognizer()
 dob_rec = DOBRecognizer()
@@ -22,15 +22,15 @@ results = analyzer.analyze(text=content,
                            entities=["PERSON", "ADDRESS", "DOB", "US_SSN", "PHONE_NUMBER", "EMAIL_ADDRESS"],
                            language='en')
 
-result = engine.anonymize(
+result = anonymizer.anonymize(
     text=content,
     analyzer_results=results,
-    operators={"PERSON": OperatorConfig("replace", {"new_value": "*" * 6}),
-               "ADDRESS": OperatorConfig("replace", {"new_value": "*" * 6}),
-               "DOB": OperatorConfig("replace", {"new_value": ("\nDate of Birth: " + "*" * 6)}),
-               "US_SSN": OperatorConfig("replace", {"new_value": "*" * 6}), 
-               "PHONE_NUMBER": OperatorConfig("replace", {"new_value": "*" * 6}), 
-               "EMAIL_ADDRESS": OperatorConfig("replace", {"new_value": "*" * 6})},
+    operators={"PERSON": OperatorConfig("replace", {"new_value": "*name*"}),
+               "ADDRESS": OperatorConfig("replace", {"new_value": "*address*"}),
+               "DOB": OperatorConfig("replace", {"new_value": ("\nDate of Birth: " + "*dob*")}),
+               "US_SSN": OperatorConfig("replace", {"new_value": "*ssn*"}), 
+               "PHONE_NUMBER": OperatorConfig("replace", {"new_value": "*phone*"}), 
+               "EMAIL_ADDRESS": OperatorConfig("replace", {"new_value": "*email*"})},
 
 )
 
@@ -38,3 +38,7 @@ file_Result_File = os.path.join(".", "src", "resources", "final_Result.txt")
 with open(file_Result_File, "w") as f:
     f.write(result.text + "\n")
 
+file_Analyzer_File = os.path.join(".", "src", "resources", "analyzer_File.txt")
+with open(file_Analyzer_File, "w") as f:
+    for result_analyzer in results:
+        f.write(str(result_analyzer) + "\n")
