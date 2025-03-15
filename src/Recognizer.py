@@ -41,4 +41,42 @@ class DOBRecognizer(PatternRecognizer):
 
         return matches
 
+class TitleRecognizer(PatternRecognizer):
+    def __init__(self):
+        patterns = [Pattern("TITLE", r"\b(Mr|Mrs|Ms|Mx|Dr|Prof)\.?\b", score=1.0)]
 
+        super().__init__(supported_entity="TITLE", patterns=patterns)
+    
+    def find(self, text, entities=None):
+        matches = []
+
+        for match in re.finditer(self.patterns, text):
+            matches.append({
+                "start": match.start(),
+                "end": match.end(),
+                "entity_type": "TITLE",
+                "score": 1.0,
+            })
+
+        return matches
+
+class PostNominalRecognizer(PatternRecognizer):
+    def __init__(self):
+        patterns = [Pattern("POSTNOMINAL", r"\b(PhD|MD|JD|DVM|DDS|CPA|RN)\b", score=1.0)]
+
+        super().__init__(supported_entity="POSTNOMINAL", patterns=patterns)
+
+    def find(self, text, entities=None):
+        matches = []
+
+        for match in re.finditer(self.patterns, text):
+            matches.append({
+                "start": match.start(),
+                "end": match.end(),
+                "entity_type": "POSTNOMINAL",
+                "score": 1.0,
+            })
+
+        return matches
+
+        
