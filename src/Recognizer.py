@@ -40,5 +40,29 @@ class DOBRecognizer(PatternRecognizer):
             })
 
         return matches
+    
+# used to recognize post-nominal titles (ex: PhD, MD, etc.)
+class PNRecognizer(PatternRecognizer):
+    def __init__(self):
+        # list of the most common medical and dental post-nominal titles
+        patterns = [Pattern("POST-NOMINAL", r",\s\b(MD|PhD|DO|MBBS|RN|BSN|MSN|DNP|NP|CRNA|PA-C|PT|OT|SLP|FACP|FAAFP|FACS|FAAN|DDS|DMD|BDS|MS|FAGD|MAGD|ABGD|ABPD|ABOP|ABOMS|ABP|ABO|RDH|EFDA)\b", score=1.0)]
+        super().__init__(supported_entity="POST-NOMINAL", patterns=patterns)
+
+    def find(self, text, entities=None):
+        matches = []
+
+        for pattern in self.patterns:
+            regex = re.compile(pattern.regex, re.ASCII)  # Compile the regex pattern
+            for match in regex.finditer(text):
+                matches.append({
+                    "start": match.start(),
+                    "end": match.end(),
+                    "entity_type": "POST-NOMINAL",
+                    "score": 1.0,
+                })
+
+        return matches
+
+
 
 
