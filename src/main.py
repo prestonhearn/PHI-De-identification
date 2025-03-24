@@ -41,6 +41,7 @@ result = engine.anonymize(
                "PHONE_NUMBER": OperatorConfig("replace"),
                "POSTNOMINAL": OperatorConfig("replace"), 
                "EMAIL_ADDRESS": OperatorConfig("replace")},
+)
 
 
 file_Result_File = os.path.join(".", "src", "resources", "final_Result.txt")
