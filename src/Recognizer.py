@@ -79,7 +79,7 @@ class PostNominalRecognizer(PatternRecognizer):
 class SSNRecognizer(PatternRecognizer):
     def __init__(self):
         patterns = [
-            Pattern("SSN",r"(\*\*\*\-\*\d\-\d{4})\b",score=1.0)
+            Pattern("SSN",r"((\*\*\*\-\*\d\-\d{4})|(\d{3}\-\d{2}\-\d{4}))\b",score=1.0)
         ]
         super().__init__(supported_entity="SSN", patterns=patterns)
 
