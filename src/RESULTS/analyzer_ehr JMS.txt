@@ -1,0 +1,11 @@
+type: DOB, start: 25, end: 50, score: 1.0
+type: ADDRESS, start: 117, end: 157, score: 1.0
+type: EMAIL_ADDRESS, start: 185, end: 201, score: 1.0
+type: TITLE, start: 216, end: 218, score: 1.0
+type: POSTNOMINAL, start: 235, end: 237, score: 1.0
+type: TITLE, start: 353, end: 355, score: 1.0
+type: PERSON, start: 9, end: 29, score: 0.85
+type: PERSON, start: 220, end: 233, score: 0.85
+type: PERSON, start: 357, end: 362, score: 0.85
+type: PERSON, start: 2598, end: 2616, score: 0.85
+type: PHONE_NUMBER, start: 165, end: 177, score: 0.75

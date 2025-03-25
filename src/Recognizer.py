@@ -1,3 +1,4 @@
+from ast import pattern
 from presidio_analyzer import PatternRecognizer
 from presidio_analyzer import Pattern
 import re
@@ -73,5 +74,15 @@ class PostNominalRecognizer(PatternRecognizer):
         super().__init__(supported_entity="POSTNOMINAL", patterns=patterns)
 
     def find(self, text, entities=None):
-        def find(self, text, entities=None):
             return find_matches(self.patterns, text, self.supported_entity)
+        
+class SSNRecognizer(PatternRecognizer):
+    def __init__(self):
+        patterns = [
+            Pattern("SSN",r"((\*\*\*\-\*\d\-\d{4})|(\d{3}\-\d{2}\-\d{4}))\b",score=1.0)
+        ]
+        super().__init__(supported_entity="SSN", patterns=patterns)
+
+    def find(self, text, entities=None):
+        return find_matches(self.patterns, text, self.supported_entity)
+
