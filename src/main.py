@@ -46,7 +46,6 @@ result = engine.anonymize(
                "MEDICAID_ACCOUNT": OperatorConfig("replace")},
 )
 
-
 file_Result_File = os.path.join(".", "src", "resources", "final_Result.txt")
 with open(file_Result_File, "w") as f:
     f.write(result.text + "\n")
