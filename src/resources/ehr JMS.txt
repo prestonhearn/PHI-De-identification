@@ -9,6 +9,7 @@ email: jmichael@att.com
 
 
 Provider: Dr. Eleanor Vance, MD
+Medicaid account: 2378 9901 8755 9812
 
 Chief Complaint: "Persistent cough and shortness of breath for the past week."
 
@@ -28,6 +29,8 @@ Allergies:
 
 Penicillin (rash)
 Family History:
+
+Medicaid account: 4576 3456 9764 3692
 
 Mother: Hypertension, type 2 diabetes
 Father: Coronary artery disease
