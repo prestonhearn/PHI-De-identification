@@ -68,7 +68,7 @@ class TitleRecognizer(PatternRecognizer):
 
 class PostNominalRecognizer(PatternRecognizer):
     def __init__(self):
-        patterns = [Pattern("POSTNOMINAL", r"\b(PhD|MD|JD|DVM|DDS|CPA|RN)\b", score=1.0)]
+        patterns = [Pattern("POSTNOMINAL", r"\b(PhD|MD|JD|DVM|DDS|CPA|RN|DO|MBBS|BSN|MSN|DNP|NP|CRNA|PA-C|PT|OT|SLP|FACP|FAAFP|FACS|FAAN|DMD|BDS|MS|FAGD|MAGD|ABGD|ABPD|ABOP|ABOMS|ABP|ABO|RDH|EFDA)\b", score=1.0)]
 
         super().__init__(supported_entity="POSTNOMINAL", patterns=patterns)
 
