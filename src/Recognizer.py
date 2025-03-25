@@ -29,7 +29,26 @@ class AddressRecognizer(PatternRecognizer):
     
 class DOBRecognizer(PatternRecognizer):
     def __init__(self):
-        patterns = [Pattern("DOB", r"(?i)(date of birth|dob)\s?:?\s?(\d{2}/\d{2}/\d{4})", score=1.0)]
+        patterns = [Pattern(
+            "DOB",
+            r"(?i)"
+            + r"(date of birth|dob|birth date|birth)"
+            + r"\s?:?\s?"
+            + r"("
+                + r"\d{1,2}/\d{1,2}/\d{4}|"
+                + r"\d{4}/\d{1,2}/\d{1,2}|"
+                + r"\d{1,2}-\d{1,2}-\d{4}|"
+                + r"\d{1,2}\.\d{1,2}\.\d{4}|"
+                + r"\d{4}\.\d{1,2}\.\d{1,2}|"
+                + r"\d{4}-\d{1,2}-\d{1,2}|"
+                + r"\d{8}
+                + r"\d{1,2}\s(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s\d{4}|"
+                + r"(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s\d{1,2},\s\d{4}|"
+                + r"\d{1,2}\s(?:January|February|March|April|May|June|July|August|September|October|November|December)\s\d{4}|"
+                + r"(?:January|February|March|April|May|June|July|August|September|October|November|December)\s\d{1,2},\s\d{4}"
+            + r")",
+            score=1.0,
+        )]
 
         super().__init__(supported_entity="DOB", patterns=patterns)
 
