@@ -1,5 +1,5 @@
 import os
-from Recognizer import AddressRecognizer, DOBRecognizer,TitleRecognizer, PostNominalRecognizer
+from Recognizer import AddressRecognizer, DOBRecognizer,TitleRecognizer, PostNominalRecognizer, MedicaidAccountRecognizer
 from presidio_analyzer import AnalyzerEngine, PatternRecognizer
 from presidio_anonymizer import AnonymizerEngine
 from presidio_anonymizer.entities import OperatorConfig
@@ -17,6 +17,7 @@ address_rec = AddressRecognizer()
 dob_rec = DOBRecognizer()
 title_rec = TitleRecognizer() 
 postnominal_rec = PostNominalRecognizer()
+medicaid_rec = MedicaidAccountRecognizer()
 
 
 
@@ -24,9 +25,10 @@ analyzer.registry.add_recognizer(address_rec)
 analyzer.registry.add_recognizer(dob_rec)
 analyzer.registry.add_recognizer(title_rec)
 analyzer.registry.add_recognizer(postnominal_rec)
+analyzer.registry.add_recognizer(medicaid_rec)
 
 results = analyzer.analyze(text=content,
-                           entities=["PERSON", "ADDRESS", "DOB", "US_SSN", "PHONE_NUMBER", "EMAIL_ADDRESS", "TITLE", "POSTNOMINAL"],
+                           entities=["PERSON", "ADDRESS", "DOB", "US_SSN", "PHONE_NUMBER", "EMAIL_ADDRESS", "TITLE", "POSTNOMINAL", "MEDICAID_ACCOUNT"],
                            language='en')
 
 result = engine.anonymize(
@@ -40,7 +42,8 @@ result = engine.anonymize(
                "US_SSN": OperatorConfig("replace"), 
                "PHONE_NUMBER": OperatorConfig("replace"),
                "POSTNOMINAL": OperatorConfig("replace"), 
-               "EMAIL_ADDRESS": OperatorConfig("replace")},
+               "EMAIL_ADDRESS": OperatorConfig("replace"),
+               "MEDICAID_ACCOUNT": OperatorConfig("replace")},
 )
 
 
