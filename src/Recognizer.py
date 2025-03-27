@@ -85,4 +85,13 @@ class SSNRecognizer(PatternRecognizer):
 
     def find(self, text, entities=None):
         return find_matches(self.patterns, text, self.supported_entity)
+    
+class MedicaidAccountRecognizer(PatternRecognizer):
+    def __init__(self):
+        patterns = [
+            Pattern("MEDICAID_ACCOUNT", r"\b\d{4}\s\d{4}\s\d{4}\s\d{4}\b", score=1.0)
+        ]
+        super().__init__(supported_entity="MEDICAID_ACCOUNT", patterns=patterns)
 
+    def find(self, text, entities=None):
+        return find_matches(self.patterns, text, self.supported_entity)
