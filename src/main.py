@@ -4,14 +4,12 @@ from presidio_analyzer import AnalyzerEngine, PatternRecognizer
 from presidio_anonymizer import AnonymizerEngine
 from presidio_anonymizer.entities import OperatorConfig
 
-file_path = os.path.join(".", "src", "resources", "ehr JMS.txt")
-
-#"./resources/ehr JMS.txt"
-with open(file_path, 'r') as file:
-    content = file.read()
+file_path = [os.path.join(".", "src", "resources", "ehr JMS.txt"),
+             os.path.join(".", "src", "resources", "ehr MH 2.txt")
+]
 
 analyzer = AnalyzerEngine()
-engine = AnonymizerEngine()
+anonymizer = AnonymizerEngine()
 
 address_rec = AddressRecognizer()
 dob_rec = DOBRecognizer()
@@ -31,9 +29,9 @@ results = analyzer.analyze(text=content,
                            entities=["PERSON", "ADDRESS", "DOB", "US_SSN", "PHONE_NUMBER", "EMAIL_ADDRESS", "TITLE", "POSTNOMINAL", "MEDICAID_ACCOUNT"],
                            language='en')
 
-result = engine.anonymize(
-    text=content,
-    analyzer_results=results,
+for file_path in file_path:
+    with open(file_path, 'r') as file:
+        content = file.read()
 
     operators={"PERSON": OperatorConfig("replace"),
                "ADDRESS": OperatorConfig("replace"),
@@ -50,3 +48,14 @@ file_Result_File = os.path.join(".", "src", "resources", "final_Result.txt")
 with open(file_Result_File, "w") as f:
     f.write(result.text + "\n")
 
+    final_result_file = os.path.join(".", "src", "RESULTS", f"final_Result_{base_filename}.txt")
+    analyzer_file = os.path.join(".", "src", "RESULTS", f"analyzer_{base_filename}.txt")
+
+    # Save anonymized content
+    with open(final_result_file, "w") as f:
+        f.write(result.text + "\n")
+
+    # Save analysis results
+    with open(analyzer_file, "w") as f:
+        for result_analyzer in results:
+            f.write(str(result_analyzer) + "\n")
