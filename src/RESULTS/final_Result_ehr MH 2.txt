@@ -12,7 +12,7 @@ Address:  *address*
 Phone: *phone*
 email: *email* 
  
-Medicaid account: 2378 9901 8755 9812
+Medicaid account: *medicaid*
 Social worker: *title**name* 
 
 Chief Complaint: "Persistent joint pain and morning stiffness for the past month."
