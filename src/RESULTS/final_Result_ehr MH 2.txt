@@ -1,5 +1,5 @@
 Patient name: *name*
-Date of Birth: *dob*
+*dob*
 SSN: *ssn*
 Date of Visit: 03/07/2024
 Address: *address*
@@ -29,16 +29,7 @@ Medications:
 - Levothyroxine 75 mcg daily
 - Ibuprofen 400 mg as needed for pain
 
-Allergies:
-- Penicillin
-- Sulfa drugs (e.g., Bactrim)
-- Aspirin
-- Ibuprofen (NSAIDs)
-- Morphine
-- Codeine
-- Amoxicillin
-- Cephalosporins
-- Anticonvulsants (e.g., Phenytoin)
+*allergies*
 
 Family History:
 - Mother: Rheumatoid arthritis
@@ -84,11 +75,7 @@ Plan:
 - Advised continued use of NSAIDs for symptom relief and application of warm compresses.
 - Patient education provided on joint protection techniques and importance of regular exercise.
 
-Lab Results (03/09/2024):
-- Rheumatoid factor: Positive
-- Anti-CCP antibodies: Positive
-- ESR: 45 mm/hr (elevated)
-- CRP: 12 mg/L (elevated)
+*lab results*
 
 Follow-up Appointment:
 - Scheduled for 03/21/2024 with rheumatology.
