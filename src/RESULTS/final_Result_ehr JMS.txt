@@ -1,5 +1,5 @@
 Patient: *name*
-Date of Birth: *dob*
+*dob*
 Medical Record Number: 1234567
 Date of Visit: 10/26/2023
 Address: *address*
@@ -24,10 +24,7 @@ Medications:
 
 Albuterol inhaler (as needed)
 Fluticasone nasal spray (daily)
-Allergies:
-
-Penicillin (rash)
-Family History:
+*allergies*
 
 Mother: Hypertension, type 2 diabetes
 Father: Coronary artery disease
