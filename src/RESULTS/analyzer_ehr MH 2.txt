@@ -6,7 +6,10 @@ type: TITLE, start: 205, end: 207, score: 1.0
 type: POSTNOMINAL, start: 224, end: 226, score: 1.0
 type: ADDRESS, start: 265, end: 308, score: 1.0
 type: EMAIL_ADDRESS, start: 336, end: 358, score: 1.0
+type: MEDICAID_ACCOUNT, start: 380, end: 399, score: 1.0
 type: TITLE, start: 415, end: 418, score: 1.0
+type: POSTNOMINAL, start: 415, end: 417, score: 1.0
+type: POSTNOMINAL, start: 549, end: 551, score: 1.0
 type: TITLE, start: 549, end: 551, score: 1.0
 type: PERSON, start: 14, end: 29, score: 0.85
 type: PERSON, start: 120, end: 129, score: 0.85

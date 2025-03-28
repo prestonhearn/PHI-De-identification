@@ -69,7 +69,7 @@ class TitleRecognizer(PatternRecognizer):
 
 class PostNominalRecognizer(PatternRecognizer):
     def __init__(self):
-        patterns = [Pattern("POSTNOMINAL", r"\b(PhD|MD|JD|DVM|DDS|CPA|RN)\b", score=1.0)]
+        patterns = [Pattern("POSTNOMINAL", r"\b(PhD|MD|JD|DVM|DDS|CPA|RN|DO|MBBS|BSN|MSN|DNP|NP|CRNA|PA-C|PT|OT|SLP|FACP|FAAFP|FACS|FAAN|DMD|BDS|MS|FAGD|MAGD|ABGD|ABPD|ABOP|ABOMS|ABP|ABO|RDH|EFDA)\b", score=1.0)]
 
         super().__init__(supported_entity="POSTNOMINAL", patterns=patterns)
 
@@ -85,7 +85,16 @@ class SSNRecognizer(PatternRecognizer):
 
     def find(self, text, entities=None):
         return find_matches(self.patterns, text, self.supported_entity)
+    
+class MedicaidAccountRecognizer(PatternRecognizer):
+    def __init__(self):
+        patterns = [
+            Pattern("MEDICAID_ACCOUNT", r"\b\d{4}\s\d{4}\s\d{4}\s\d{4}\b", score=1.0)
+        ]
+        super().__init__(supported_entity="MEDICAID_ACCOUNT", patterns=patterns)
 
+    def find(self, text, entities=None):
+        return find_matches(self.patterns, text, self.supported_entity)
 class HospitalRecognizer(PatternRecognizer):
     def __init__(self):
         patterns = [Pattern("HOSPITAL", r"\b",score=1.0)]
