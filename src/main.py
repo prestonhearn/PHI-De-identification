@@ -7,7 +7,8 @@ from Recognizer import (
     SSNRecognizer,
     MedicaidAccountRecognizer,
     AllergiesRecognizer,
-    LabResultsRecognizer
+    LabResultsRecognizer,
+    HospitalRecognizer
 )
 from presidio_analyzer import AnalyzerEngine
 from presidio_anonymizer import AnonymizerEngine
@@ -28,7 +29,8 @@ recognizers = [
     SSNRecognizer(),
     MedicaidAccountRecognizer(),
     AllergiesRecognizer(),
-    LabResultsRecognizer()
+    LabResultsRecognizer(),
+    HospitalRecognizer()
 ]
 
 for recognizer in recognizers:
@@ -41,7 +43,7 @@ for file_path in file_path:
     entities = [
         "PERSON", "ADDRESS", "DOB", "SSN", "PHONE_NUMBER", 
         "EMAIL_ADDRESS", "TITLE", "POSTNOMINAL", "MEDICAID_ACCOUNT",
-        "ALLERGIES", "LAB_RESULTS"
+        "ALLERGIES", "LAB_RESULTS", "HOSTPITAL"
     ]
 
     operator_config = {
@@ -55,7 +57,8 @@ for file_path in file_path:
         "EMAIL_ADDRESS": OperatorConfig("replace", {"new_value": "*email*"}),
         "MEDICAID_ACCOUNT": OperatorConfig("replace", {"new_value": "*medicaid*"}),
         "ALLERGIES": OperatorConfig("replace", {"new_value": "*allergies*\n\n"}),
-        "LAB_RESULTS": OperatorConfig("replace", {"new_value": "*lab results*\n\n"})
+        "LAB_RESULTS": OperatorConfig("replace", {"new_value": "*lab results*\n\n"}),
+        "HOSPITAL": OperatorConfig("replace", {"new_value": "*hospital*"})
     }
 
     results = analyzer.analyze(
