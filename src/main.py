@@ -1,5 +1,5 @@
 import os
-from Recognizer import AddressRecognizer, DOBRecognizer, TitleRecognizer, PostNominalRecognizer, SSNRecognizer, MedicaidAccountRecognizer
+from Recognizer import AddressRecognizer, DOBRecognizer, TitleRecognizer, PostNominalRecognizer, SSNRecognizer, MedicaidAccountRecognizer, HospitalRecognizer
 from presidio_analyzer import AnalyzerEngine
 from presidio_anonymizer import AnonymizerEngine
 from presidio_anonymizer.entities import OperatorConfig
@@ -17,6 +17,7 @@ title_rec = TitleRecognizer()
 postnominal_rec = PostNominalRecognizer()
 ssn_rec = SSNRecognizer()
 medicaid_rec = MedicaidAccountRecognizer()
+hospital_rec = HospitalRecognizer()  
 
 
 analyzer.registry.add_recognizer(address_rec)
@@ -25,6 +26,7 @@ analyzer.registry.add_recognizer(title_rec)
 analyzer.registry.add_recognizer(postnominal_rec)
 analyzer.registry.add_recognizer(ssn_rec)
 analyzer.registry.add_recognizer(medicaid_rec)
+analyzer.registry.add_recognizer(hospital_rec)
 
 #"./resources/ehr JMS.txt"
 
@@ -33,7 +35,7 @@ for file_path in file_path:
         content = file.read()
 
     results = analyzer.analyze(text=content,
-                            entities=["PERSON", "ADDRESS", "DOB", "SSN", "PHONE_NUMBER", "EMAIL_ADDRESS", "TITLE", "POSTNOMINAL", "MEDICAID_ACCOUNT"],
+                            entities=["PERSON", "ADDRESS", "DOB", "SSN", "PHONE_NUMBER", "EMAIL_ADDRESS", "TITLE", "POSTNOMINAL", "MEDICAID_ACCOUNT", "HOSPITAL"],
                             language='en')
 
     result = anonymizer.anonymize(
@@ -48,6 +50,7 @@ for file_path in file_path:
                 "POSTNOMINAL": OperatorConfig("replace", {"new_value": "*pn*"}), 
                 "EMAIL_ADDRESS": OperatorConfig("replace", {"new_value": "*email*"}),
                 "MEDICAID_ACCOUNT": OperatorConfig("replace", {"new_value": "*medicaid*"}),
+                "HOSPITAL": OperatorConfig("replace", {"new_value": "*hospital*"})
                 }
 
     )
