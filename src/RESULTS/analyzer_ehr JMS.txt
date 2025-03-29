@@ -4,6 +4,7 @@ type: EMAIL_ADDRESS, start: 185, end: 201, score: 1.0
 type: TITLE, start: 216, end: 218, score: 1.0
 type: POSTNOMINAL, start: 235, end: 237, score: 1.0
 type: TITLE, start: 353, end: 355, score: 1.0
+type: ALLERGIES, start: 1088, end: 1135, score: 1.0
 type: PERSON, start: 9, end: 29, score: 0.85
 type: PERSON, start: 220, end: 233, score: 0.85
 type: PERSON, start: 357, end: 362, score: 0.85

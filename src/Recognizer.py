@@ -56,8 +56,6 @@ class DOBRecognizer(PatternRecognizer):
     def find(self, text, entities=None):
         return find_matches(self.patterns, text, self.supported_entity)
 
-        
-
 class TitleRecognizer(PatternRecognizer):
     def __init__(self):
         patterns = [Pattern("TITLE", r"\b(Mr|Mrs|Ms|Mx|Dr|Prof)\.?\b", score=1.0)]
@@ -69,7 +67,10 @@ class TitleRecognizer(PatternRecognizer):
 
 class PostNominalRecognizer(PatternRecognizer):
     def __init__(self):
-        patterns = [Pattern("POSTNOMINAL", r"\b(PhD|MD|JD|DVM|DDS|CPA|RN|DO|MBBS|BSN|MSN|DNP|NP|CRNA|PA-C|PT|OT|SLP|FACP|FAAFP|FACS|FAAN|DMD|BDS|MS|FAGD|MAGD|ABGD|ABPD|ABOP|ABOMS|ABP|ABO|RDH|EFDA)\b", score=1.0)]
+        patterns = [
+            Pattern("POSTNOMINAL", r"\b(PhD|MD|JD|DVM|DDS|CPA|RN|DO|MBBS|BSN|MSN|DNP|NP|CRNA|PA-C|PT|OT|SLP|FACP|FAAFP|FACS|FAAN|DMD|BDS|FAGD|MAGD|ABGD|ABPD|ABOP|ABOMS|ABP|ABO|RDH|EFDA)\b", score=1.0),
+            Pattern("POSTNOMINAL", r"\bMS\b", score=0.85)
+        ]
 
         super().__init__(supported_entity="POSTNOMINAL", patterns=patterns)
 
@@ -95,7 +96,31 @@ class MedicaidAccountRecognizer(PatternRecognizer):
 
     def find(self, text, entities=None):
         return find_matches(self.patterns, text, self.supported_entity)
-        
+    
+class AllergiesRecognizer(PatternRecognizer):
+    def __init__(self):
+        patterns = [
+            Pattern("ALLERGIES", r"(?i)allergies:\s*(.*?)\n\s*\n", score=1.0)
+            #Pattern("ALLERGIES", r"(?i)allergies:\s*\S((.*\n)*?)(?=.*:)", score=1.0) 
+            # Unsuccessful attempt at trying to find a way to identify until a 
+            # line ending with a colon is found and exclude that line 
+            # form the pattern match (positive look ahead I think)
+        ]
+        super().__init__(supported_entity="ALLERGIES", patterns=patterns)
+
+    def find(self, text, entities=None):
+        return find_matches(self.patterns, text, self.supported_entity)
+    
+class LabResultsRecognizer(PatternRecognizer):
+    def __init__(self):
+        patterns = [
+            Pattern("LAB_RESULTS", r"(?i)lab results[^:]*:\s*(.*?)\n\s*\n", score=1.0)
+        ]
+        super().__init__(supported_entity="LAB_RESULTS", patterns=patterns)
+
+    def find(self, text, entities=None):
+        return find_matches(self.patterns, text, self.supported_entity)
+    
 class HospitalRecognizer(PatternRecognizer):
     def __init__(self):
         phrase1 = "Hospital name:"
@@ -105,4 +130,3 @@ class HospitalRecognizer(PatternRecognizer):
     
     def find(self, text, entities=None):
         return find_matches(self.patterns, text, self.supported_entity)
-
