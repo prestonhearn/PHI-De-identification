@@ -95,9 +95,12 @@ class MedicaidAccountRecognizer(PatternRecognizer):
 
     def find(self, text, entities=None):
         return find_matches(self.patterns, text, self.supported_entity)
+        
 class HospitalRecognizer(PatternRecognizer):
     def __init__(self):
-        patterns = [Pattern("HOSPITAL", r"\b",score=1.0)]
+        phrase1 = "Hospital name:"
+        phrase2 = "Hospital Name:"
+        patterns = [Pattern("HOSPITAL", rf"(?<={re.escape(phrase1)}\s)([^\n]+)|(?<={re.escape(phrase2)}\s)([^\n]+)",score=1.0)]
         super().__init__(supported_entity="HOSPITAL", patterns=patterns)
     
     def find(self, text, entities=None):
