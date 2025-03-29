@@ -43,7 +43,7 @@ for file_path in file_path:
     entities = [
         "PERSON", "ADDRESS", "DOB", "SSN", "PHONE_NUMBER", 
         "EMAIL_ADDRESS", "TITLE", "POSTNOMINAL", "MEDICAID_ACCOUNT",
-        "ALLERGIES", "LAB_RESULTS", "HOSTPITAL"
+        "ALLERGIES", "LAB_RESULTS", "HOSPITAL"
     ]
 
     operator_config = {
