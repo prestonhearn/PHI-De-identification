@@ -7,7 +7,7 @@ Phone: *phone*
 Email: *email*
 
 Provider name: *title*. *name*, *pn*
-Hospital name: FistOne Care
+Hospital name: *hospital*
 Address:  *address*
 Phone: *phone*
 email: *email* 

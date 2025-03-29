@@ -4,6 +4,7 @@ type: ADDRESS, start: 94, end: 139, score: 1.0
 type: EMAIL_ADDRESS, start: 167, end: 188, score: 1.0
 type: TITLE, start: 205, end: 207, score: 1.0
 type: POSTNOMINAL, start: 224, end: 226, score: 1.0
+type: HOSPITAL, start: 242, end: 254, score: 1.0
 type: ADDRESS, start: 265, end: 308, score: 1.0
 type: EMAIL_ADDRESS, start: 336, end: 358, score: 1.0
 type: MEDICAID_ACCOUNT, start: 380, end: 399, score: 1.0
