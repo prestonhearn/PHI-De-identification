@@ -130,3 +130,19 @@ class HospitalRecognizer(PatternRecognizer):
     
     def find(self, text, entities=None):
         return find_matches(self.patterns, text, self.supported_entity)
+
+class FaxRecognizer(PatternRecognizer):
+    def __init__(self):
+        patterns = [Pattern("FAX", r"(?i)"+r"(fax|fax number|fax no.)"+r"\s?:?\s?"+ r"(\+?\d[\d -]{8,}\d)", score=1.0)]
+        super().__init__(supported_entity="FAX", patterns=patterns)
+    
+    def find(self, text, entities=None):
+        return find_matches(self.patterns, text, self.supported_entity)
+
+class WebURLRecognizer(PatternRecognizer): # Presidio Analzyer has a URL recognizer built-in but this is to avoid false positives (i.e. Ms.Jen being mistaken for ms.***)
+    def __init__(self):
+        patterns = [Pattern("WEB_URL", r"\b(?:https?://|www\.)[a-zA-Z0-9\-\.]+\.[a-z]{2,}(/[^\s]*)?\b", score=1.0)]
+        super().__init__(supported_entity="WEB_URL", patterns=patterns)
+
+    def find(self, text, entities=None):
+        return find_matches(self.patterns, text, self.supported_entity)

@@ -8,14 +8,17 @@ from Recognizer import (
     MedicaidAccountRecognizer,
     AllergiesRecognizer,
     LabResultsRecognizer,
-    HospitalRecognizer
+    HospitalRecognizer,
+    FaxRecognizer,
+    WebURLRecognizer
 )
 from presidio_analyzer import AnalyzerEngine
 from presidio_anonymizer import AnonymizerEngine
 from presidio_anonymizer.entities import OperatorConfig
 
 file_path = [os.path.join(".", "src", "resources", "ehr JMS.txt"),
-             os.path.join(".", "src", "resources", "ehr MH 2.txt")
+             os.path.join(".", "src", "resources", "ehr MH 2.txt"),
+             os.path.join(".", "src", "resources", "ehr EC 3 .txt")
 ]
 
 analyzer = AnalyzerEngine()
@@ -30,7 +33,9 @@ recognizers = [
     MedicaidAccountRecognizer(),
     AllergiesRecognizer(),
     LabResultsRecognizer(),
-    HospitalRecognizer()
+    HospitalRecognizer(),
+    FaxRecognizer(),
+    WebURLRecognizer()
 ]
 
 for recognizer in recognizers:
@@ -43,7 +48,7 @@ for file_path in file_path:
     entities = [
         "PERSON", "ADDRESS", "DOB", "SSN", "PHONE_NUMBER", 
         "EMAIL_ADDRESS", "TITLE", "POSTNOMINAL", "MEDICAID_ACCOUNT",
-        "ALLERGIES", "LAB_RESULTS", "HOSPITAL"
+        "ALLERGIES", "LAB_RESULTS", "HOSPITAL", "FAX", "WEB_URL", "IP_ADDRESS"
     ]
 
     operator_config = {
@@ -58,7 +63,10 @@ for file_path in file_path:
         "MEDICAID_ACCOUNT": OperatorConfig("replace", {"new_value": "*medicaid*"}),
         "ALLERGIES": OperatorConfig("replace", {"new_value": "*allergies*\n\n"}),
         "LAB_RESULTS": OperatorConfig("replace", {"new_value": "*lab results*\n\n"}),
-        "HOSPITAL": OperatorConfig("replace", {"new_value": "*hospital*"})
+        "HOSPITAL": OperatorConfig("replace", {"new_value": "*hospital*"}),
+        "FAX": OperatorConfig("replace", {"new_value": "*fax*"}),
+        "WEB_URL": OperatorConfig("replace", {"new_value": "*url*"}),
+        "IP_ADDRESS": OperatorConfig("replace", {"new_value": "*ip*"})
     }
 
     results = analyzer.analyze(
