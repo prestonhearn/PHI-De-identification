@@ -142,7 +142,7 @@ class NumberRecognizer(Pattern):
                         + r"[A-Z]\d{4}-\d{7}|[A-Z]{2}\d{3}[a-z]-\d{4}|"
                         + r"[A-Z]\d{4}-\d{7}|[A-Z]{2}\d{3}[a-z]-\d{4}|"
                         + r"[A-Z]\d{4}-\d{7}|[A-Z]{2}\d{3}[a-z]-\d{4}|[A-Z]{5}-[A-Z][a-z]\d{8}"
-                    + r")", score=1.0),
+                    + r")", score=0.75),
         ]
         super().__init__(supported_entity="NUMBER", patterns=patterns)
 
