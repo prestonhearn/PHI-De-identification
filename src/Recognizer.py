@@ -131,22 +131,20 @@ class HospitalRecognizer(PatternRecognizer):
     def find(self, text, entities=None):
         return find_matches(self.patterns, text, self.supported_entity)
     
-class AccountRecognizer(PatternRecognizer):
+class NumberRecognizer(Pattern):
     def __init__(self):
         patterns = [
-            Pattern("ACCOUNT", r"(?i)account\s?:?\s?\d{4}\s?\d{4}\s?\d{4}\s?\d{4}", score=1.0)
+            Pattern("NUMBER", r"\s?:?\s?"
+                    + r"("
+                        + r"\d{3,4}-?\d{2,4}-?\d{4}|\d{6}|"
+                        + r"\d{4}\s?\d{4}\s?\d{4}\s?\d{4}|"
+                        + r"[A-Z]{2}\d{4}-[A-Z]{3}\d{5}|"
+                        + r"[A-Z]\d{4}-\d{7}|[A-Z]{2}\d{3}[a-z]-\d{4}|"
+                        + r"[A-Z]\d{4}-\d{7}|[A-Z]{2}\d{3}[a-z]-\d{4}|"
+                        + r"[A-Z]\d{4}-\d{7}|[A-Z]{2}\d{3}[a-z]-\d{4}|[A-Z]{5}-[A-Z][a-z]\d{8}"
+                    + r")", score=1.0),
         ]
-        super().__init__(supported_entity="ACCOUNT", patterns=patterns)
-
-    def find(self, text, entities=None):
-        return find_matches(self.patterns, text, self.supported_entity)
-    
-class HealthPlanBeneficiaryNumberRecognizer(PatternRecognizer):
-    def __init__(self):
-        patterns = [
-            Pattern("HEALTH_PLAN_BENEFICIARY_NUMBER", r"(?i)health\splan\sbeneficiary\snumber\s?:?\s?\d{3}-\d{4}-\d{4}", score=1.0)
-        ]
-        super().__init__(supported_entity="HEALTH_PLAN_BENEFICIARY_NUMBER", patterns=patterns)
+        super().__init__(supported_entity="NUMBER", patterns=patterns)
 
     def find(self, text, entities=None):
         return find_matches(self.patterns, text, self.supported_entity)
