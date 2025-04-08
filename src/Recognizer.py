@@ -130,3 +130,23 @@ class HospitalRecognizer(PatternRecognizer):
     
     def find(self, text, entities=None):
         return find_matches(self.patterns, text, self.supported_entity)
+    
+class AccountRecognizer(PatternRecognizer):
+    def __init__(self):
+        patterns = [
+            Pattern("ACCOUNT", r"(?i)account\s?:?\s?\d{4}\s?\d{4}\s?\d{4}\s?\d{4}", score=1.0)
+        ]
+        super().__init__(supported_entity="ACCOUNT", patterns=patterns)
+
+    def find(self, text, entities=None):
+        return find_matches(self.patterns, text, self.supported_entity)
+    
+class HealthPlanBeneficiaryNumberRecognizer(PatternRecognizer):
+    def __init__(self):
+        patterns = [
+            Pattern("HEALTH_PLAN_BENEFICIARY_NUMBER", r"(?i)health\splan\sbeneficiary\snumber\s?:?\s?\d{3}-\d{4}-\d{4}", score=1.0)
+        ]
+        super().__init__(supported_entity="HEALTH_PLAN_BENEFICIARY_NUMBER", patterns=patterns)
+
+    def find(self, text, entities=None):
+        return find_matches(self.patterns, text, self.supported_entity)
