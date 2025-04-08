@@ -131,6 +131,16 @@ class HospitalRecognizer(PatternRecognizer):
     def find(self, text, entities=None):
         return find_matches(self.patterns, text, self.supported_entity)
     
+class AccountRecognizer(PatternRecognizer):
+    def __init__(self):
+        patterns = [
+            Pattern("ACCOUNT", r"(?i)account\s?:?\s?\d{4}\s?\d{4}\s?\d{4}\s?\d{4}", score=1.0)
+        ]
+        super().__init__(supported_entity="ACCOUNT", patterns=patterns)
+
+    def find(self, text, entities=None):
+        return find_matches(self.patterns, self.supported_entity)
+    
 class NumberRecognizer(Pattern):
     def __init__(self):
         patterns = [
