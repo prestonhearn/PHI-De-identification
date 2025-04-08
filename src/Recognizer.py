@@ -141,7 +141,7 @@ class AccountRecognizer(PatternRecognizer):
     def find(self, text, entities=None):
         return find_matches(self.patterns, self.supported_entity)
     
-class NumberRecognizer(Pattern):
+class NumberRecognizer(PatternRecognizer):
     def __init__(self):
         patterns = [
             Pattern("NUMBER", r"\s?:?\s?"
@@ -158,3 +158,12 @@ class NumberRecognizer(Pattern):
 
     def find(self, text, entities=None):
         return find_matches(self.patterns, text, self.supported_entity)
+    
+class FaxRecognizer(PatternRecognizer):
+    def __init__(self):
+        patterns = [Pattern("FAX", r"(?i)"+r"(fax|fax number|fax no.)"+r"\s?:?\s?"+ r"(\+?\d[\d -]{8,}\d)", score=1.0)]
+        super().__init__(supported_entity="FAX", patterns=patterns)
+     
+    def find(self, text, entities=None):
+        return find_matches(self.patterns, text, self.supported_entity)
+
