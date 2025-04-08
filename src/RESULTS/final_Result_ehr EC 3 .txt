@@ -2,7 +2,7 @@ Patient Name: *name*
 *dob*
 Medical record number:TXB4459-BS34334
 SSN: *ssn*
-Date of Visit: 02/14/2024
+Date of Visit: *date*
 Address: *address*
 Phone: *phone*
 Email: *email*
@@ -12,7 +12,7 @@ Pacemaker serial numbers:B1001-7786432
 Code:772980014
 
 Provider: *title*. *name*, *pn*
-Hospital Name: *hospital*
+Hospital Name: Greenfield Medical Center
 license number: MD77-786123
 *fax*
 Address: *address*
@@ -26,16 +26,16 @@ Group no.: 614277
 email: *email*
 URL:*url*
 
-Chief Complaint: "Severe headaches and dizziness for the past two weeks."
+Chief Complaint: "Severe headaches and dizziness for *date*."
 
 History of Present Illness (HPI):
-*title*. *name* presents with complaints of severe, persistent headaches accompanied by dizziness and occasional nausea. Symptoms began gradually and have been worsening over the past two weeks. She describes the headache as a constant pressure, predominantly in the frontal and temporal regions. No known history of migraines. Over-the-counter pain relievers provide minimal relief. No recent head trauma. Denies fever, vision changes, or weakness.
+*title*. *name* presents with complaints of severe, persistent headaches accompanied by dizziness and occasional nausea. Symptoms began gradually and have been worsening over *date*. She describes the headache as a constant pressure, predominantly in the frontal and temporal regions. No known history of migraines. Over-the-counter pain relievers provide minimal relief. No recent head trauma. Denies fever, vision changes, or weakness.
 
 Past Medical History (PMH):
 
-Hypertension (diagnosed 2019)
+Hypertension (diagnosed *date*)
 
-Anxiety disorder (diagnosed 2021)
+Anxiety disorder (diagnosed *date*)
 
 No known surgical history
 
@@ -47,7 +47,9 @@ Alprazolam 0.5 mg as needed for anxiety
 
 Acetaminophen 500 mg as needed for pain
 
-*allergies*
+Allergies:
+
+Penicillin
 
 NSAIDs (e.g., ibuprofen, naproxen)
 
@@ -123,13 +125,15 @@ Advised patient to keep a headache diary to track triggers and frequency.
 
 Recommended increased hydration and stress management techniques.
 
-Adjusted lisinopril dosage to 20 mg daily to better control blood pressure.
+Adjusted lisinopril dosage to 20 mg *date* to better control blood pressure.
 
 Referred to neurology for further evaluation.
 
 Patient education provided on lifestyle modifications to manage headaches and hypertension.
 
-*lab results*
+Lab Results (*date*):
+
+CBC: Normal
 
 Electrolytes: Normal
 
@@ -137,11 +141,11 @@ MRI Brain: No acute abnormalities detected
 
 Follow-up Appointments:
 
-Scheduled for 02/28/2024 with neurology.
+Scheduled for *date* with neurology.
 
-Additional follow-up scheduled for 04/10/2024 to reassess headache frequency and medication effectiveness.
+Additional follow-up scheduled for *date* to reassess headache frequency and medication effectiveness.
 
-Blood pressure check-in scheduled for 03/20/2024 to monitor response to adjusted lisinopril dosage.
+Blood pressure check-in scheduled for *date* to monitor response to adjusted lisinopril dosage.
 
 Provider Notes:
 
@@ -155,7 +159,7 @@ Encouraged patient to identify possible dietary triggers for headaches and maint
 
 Instructed patient to report any worsening symptoms, changes in headache pattern, or development of neurological deficits immediately.
 
-02/28/2024 (*name*):
+*date* (*name*):
 
 Patient reports mild improvement in symptoms.
 
@@ -163,27 +167,27 @@ MRI confirmed no serious pathology.
 
 Diagnosed with tension-type headaches.
 
-Initiated amitriptyline 10 mg nightly for headache prevention.
+Initiated amitriptyline *date* for headache prevention.
 
-Advised continued monitoring and follow-up in 6 weeks.
+Advised continued monitoring and follow-up in *date*.
 
-03/20/2024 (Blood Pressure Follow-up):
+*date* (Blood Pressure Follow-up):
 
-Patient reports consistent use of lisinopril 20 mg daily.
+Patient reports consistent use of lisinopril 20 mg *date*.
 
 Blood pressure reading: 134/82 mmHg, showing mild improvement.
 
 Encouraged patient to maintain low-sodium diet and monitor at-home readings.
 
-Next follow-up scheduled in one month.
+Next follow-up scheduled in *date*.
 
-04/10/2024 (Headache and Medication Follow-up):
+*date* (Headache and Medication Follow-up):
 
 Patient reports further reduction in headache frequency and severity.
 
 Tolerating amitriptyline well with no significant side effects.
 
-Plan to continue current treatment and reassess in three months.
+Plan to continue current treatment and reassess in *date*.
 
 Patient instructed to reach out if symptoms worsen or new concerns arise.
 
