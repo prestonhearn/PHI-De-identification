@@ -130,19 +130,40 @@ class HospitalRecognizer(PatternRecognizer):
     
     def find(self, text, entities=None):
         return find_matches(self.patterns, text, self.supported_entity)
+    
+class AccountRecognizer(PatternRecognizer):
+    def __init__(self):
+        patterns = [
+            Pattern("ACCOUNT", r"(?i)account\s?:?\s?\d{4}\s?\d{4}\s?\d{4}\s?\d{4}", score=1.0)
+        ]
+        super().__init__(supported_entity="ACCOUNT", patterns=patterns)
 
+    def find(self, text, entities=None):
+        return find_matches(self.patterns, self.supported_entity)
+    
+class NumberRecognizer(PatternRecognizer):
+    def __init__(self):
+        patterns = [
+            Pattern("NUMBER", r"\s?:?\s?"
+                    + r"("
+                        + r"\d{3,4}-?\d{2,4}-?\d{4}|\d{6}|"
+                        + r"\d{4}\s?\d{4}\s?\d{4}\s?\d{4}|"
+                        + r"[A-Z]{2}\d{4}-[A-Z]{3}\d{5}|"
+                        + r"[A-Z]\d{4}-\d{7}|[A-Z]{2}\d{3}[a-z]-\d{4}|"
+                        + r"[A-Z]\d{4}-\d{7}|[A-Z]{2}\d{3}[a-z]-\d{4}|"
+                        + r"[A-Z]\d{4}-\d{7}|[A-Z]{2}\d{3}[a-z]-\d{4}|[A-Z]{5}-[A-Z][a-z]\d{8}"
+                    + r")", score=0.75),
+        ]
+        super().__init__(supported_entity="NUMBER", patterns=patterns)
+
+    def find(self, text, entities=None):
+        return find_matches(self.patterns, text, self.supported_entity)
+    
 class FaxRecognizer(PatternRecognizer):
     def __init__(self):
         patterns = [Pattern("FAX", r"(?i)"+r"(fax|fax number|fax no.)"+r"\s?:?\s?"+ r"(\+?\d[\d -]{8,}\d)", score=1.0)]
         super().__init__(supported_entity="FAX", patterns=patterns)
-    
+     
     def find(self, text, entities=None):
         return find_matches(self.patterns, text, self.supported_entity)
 
-class WebURLRecognizer(PatternRecognizer): # Presidio Analzyer has a URL recognizer built-in but this is to avoid false positives (i.e. Ms.Jen being mistaken for ms.***)
-    def __init__(self):
-        patterns = [Pattern("WEB_URL", r"\b(?:https?://|www\.)[a-zA-Z0-9\-\.]+\.[a-z]{2,}(/[^\s]*)?\b", score=1.0)]
-        super().__init__(supported_entity="WEB_URL", patterns=patterns)
-
-    def find(self, text, entities=None):
-        return find_matches(self.patterns, text, self.supported_entity)

@@ -9,6 +9,8 @@ from Recognizer import (
     AllergiesRecognizer,
     LabResultsRecognizer,
     HospitalRecognizer,
+    NumberRecognizer,
+    AccountRecognizer,
     FaxRecognizer,
     WebURLRecognizer
 )
@@ -35,6 +37,8 @@ recognizers = [
     AllergiesRecognizer(),
     LabResultsRecognizer(),
     HospitalRecognizer(),
+    NumberRecognizer(),
+    AccountRecognizer(),
     FaxRecognizer(),
     WebURLRecognizer()
 ]
@@ -50,7 +54,7 @@ for file_path in file_path:
         entities = [
             "TITLE", "PERSON", "POSTNOMINAL", "ADDRESS", "DOB",
             "DATE_TIME", "PHONE_NUMBER", "FAX", "EMAIL_ADDRESS",
-            "SSN",  "MEDICAID_ACCOUNT", "WEB_URL", "IP_ADDRESS"
+            "SSN",  "MEDICAID_ACCOUNT", "NUMBER", "WEB_URL", "IP_ADDRESS", "ACCOUNT"
         ]
     else:
         entities = [
@@ -73,6 +77,8 @@ for file_path in file_path:
         "ALLERGIES": OperatorConfig("replace", {"new_value": "*allergies*\n\n"}),
         "LAB_RESULTS": OperatorConfig("replace", {"new_value": "*lab results*\n\n"}),
         "HOSPITAL": OperatorConfig("replace", {"new_value": "*hospital*"}),
+        "NUMBER": OperatorConfig("replace", {"new_value": "*number*"}),
+        "ACCOUNT": OperatorConfig("replace", {"new_value": "*account*"}),
         "FAX": OperatorConfig("replace", {"new_value": "*fax*"}),
         "WEB_URL": OperatorConfig("replace", {"new_value": "*url*"}),
         "IP_ADDRESS": OperatorConfig("replace", {"new_value": "*ip*"})
