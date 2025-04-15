@@ -1,4 +1,6 @@
 from ast import pattern
+from gettext import find
+from os import supports_effective_ids
 from presidio_analyzer import PatternRecognizer
 from presidio_analyzer import Pattern
 import re
@@ -143,6 +145,40 @@ class WebURLRecognizer(PatternRecognizer): # Presidio Analzyer has a URL recogni
     def __init__(self):
         patterns = [Pattern("WEB_URL", r"\b(?:https?://|www\.)[a-zA-Z0-9\-\.]+\.[a-z]{2,}(/[^\s]*)?\b", score=1.0)]
         super().__init__(supported_entity="WEB_URL", patterns=patterns)
+
+    def find(self, text, entities=None):
+        return find_matches(self.patterns, text, self.supported_entity)
+    
+class MedicalRecordNumberRecognizer(PatternRecognizer):
+    def __init__(self):
+        # Specific pattern to match only MRNs, with format like 'TXB4459-BS34334' and '1234567'
+        patterns = [
+            Pattern("MED_REC_NUM", r"\b[A-Za-z]{3}\d{4}-[A-Za-z]{2}\d{5}\b", score=1.0),  # Format: TXB4459-BS34334
+            Pattern("MED_REC_NUM", r"\b\d{7}\b", score=1.0)  # Format: 1234567
+        ]
+        super().__init__(supported_entity="MED_REC_NUM", patterns=patterns)
+
+    def find(self, text, entities=None):
+        return find_matches(self.patterns, text, self.supported_entity)
+
+    
+class HealthPlanBeneficiaryNumberRecognizer(PatternRecognizer):
+    def __init__(self):
+        patterns = [
+            Pattern("HPBN", r"\b\d{3}-\d{4}-\d{4}\b", score=1.0)
+        ]
+        super().__init__(supported_entity="HPBN", patterns=patterns)
+
+    def find(self, text, entities=None):
+        return find_matches(self.patterns, text, self.supported_entity)
+    
+class PacemakerSerialNumberRecognizer(PatternRecognizer):
+    def __init__(self):
+        # Pattern to match pacemaker serial numbers like 'B1001-7786432'
+        patterns = [
+            Pattern("PSN", r"\b[A-Za-z]\d{4}-\d{7}\b", score=1.0)  # Format: B1001-7786432
+        ]
+        super().__init__(supported_entity="PSN", patterns=patterns)
 
     def find(self, text, entities=None):
         return find_matches(self.patterns, text, self.supported_entity)

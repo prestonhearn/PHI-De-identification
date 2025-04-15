@@ -1,4 +1,5 @@
 type: DOB, start: 25, end: 50, score: 1.0
+type: MED_REC_NUM, start: 74, end: 81, score: 1.0
 type: ADDRESS, start: 117, end: 157, score: 1.0
 type: EMAIL_ADDRESS, start: 185, end: 201, score: 1.0
 type: TITLE, start: 216, end: 218, score: 1.0

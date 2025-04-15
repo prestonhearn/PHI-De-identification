@@ -1,14 +1,14 @@
 Patient Name: *name*
-*dob*
-Medical record number:TXB4459-BS34334
+Date of Birth: *dob*
+Medical record number:*med_rec_num*
 SSN: *ssn*
 Date of Visit: *date*
 Address: *address*
 Phone: *phone*
 Email: *email*
-Health plan beneficiary number: 888-6765-1110
+Health plan beneficiary number: *hpbn*
 Device identifier:PM4437-BTX33457
-Pacemaker serial numbers:B1001-7786432
+Pacemaker serial numbers:*psn*
 Code:772980014
 
 Provider: *title*. *name*, *pn*

@@ -10,7 +10,10 @@ from Recognizer import (
     LabResultsRecognizer,
     HospitalRecognizer,
     FaxRecognizer,
-    WebURLRecognizer
+    WebURLRecognizer,
+    MedicalRecordNumberRecognizer,
+    HealthPlanBeneficiaryNumberRecognizer,
+    PacemakerSerialNumberRecognizer
 )
 from presidio_analyzer import AnalyzerEngine
 from presidio_anonymizer import AnonymizerEngine
@@ -36,7 +39,10 @@ recognizers = [
     LabResultsRecognizer(),
     HospitalRecognizer(),
     FaxRecognizer(),
-    WebURLRecognizer()
+    WebURLRecognizer(),
+    MedicalRecordNumberRecognizer(),
+    HealthPlanBeneficiaryNumberRecognizer(),
+    PacemakerSerialNumberRecognizer()
 ]
 
 for recognizer in recognizers:
@@ -50,13 +56,15 @@ for file_path in file_path:
         entities = [
             "TITLE", "PERSON", "POSTNOMINAL", "ADDRESS", "DOB",
             "DATE_TIME", "PHONE_NUMBER", "FAX", "EMAIL_ADDRESS",
-            "SSN",  "MEDICAID_ACCOUNT", "WEB_URL", "IP_ADDRESS"
+            "SSN",  "MEDICAID_ACCOUNT", "WEB_URL", "IP_ADDRESS",
+            "MED_REC_NUM", "HPBN", "PSN"
         ]
     else:
         entities = [
             "PERSON", "ADDRESS", "DOB", "SSN", "PHONE_NUMBER", 
             "EMAIL_ADDRESS", "TITLE", "POSTNOMINAL", "MEDICAID_ACCOUNT",
-            "ALLERGIES", "LAB_RESULTS", "HOSPITAL", "IP_ADDRESS"
+            "ALLERGIES", "LAB_RESULTS", "HOSPITAL", "IP_ADDRESS", 
+            "MED_REC_NUM", "HPBN", "PSN"
         ]
 
     operator_config = {
@@ -65,7 +73,7 @@ for file_path in file_path:
         "POSTNOMINAL": OperatorConfig("replace", {"new_value": "*pn*"}),            
         "ADDRESS": OperatorConfig("replace", {"new_value": "*address*"}),
         "DATE_TIME": OperatorConfig("replace", {"new_value": "*date*"}),
-        "DOB": OperatorConfig("replace", {"new_value": "\n*dob*"}),
+        "DOB": OperatorConfig("replace", {"new_value": "\nDate of Birth: *dob*"}),
         "PHONE_NUMBER": OperatorConfig("replace", {"new_value": "*phone*"}),
         "EMAIL_ADDRESS": OperatorConfig("replace", {"new_value": "*email*"}),
         "SSN": OperatorConfig("replace", {"new_value": "*ssn*"}),
@@ -75,7 +83,10 @@ for file_path in file_path:
         "HOSPITAL": OperatorConfig("replace", {"new_value": "*hospital*"}),
         "FAX": OperatorConfig("replace", {"new_value": "*fax*"}),
         "WEB_URL": OperatorConfig("replace", {"new_value": "*url*"}),
-        "IP_ADDRESS": OperatorConfig("replace", {"new_value": "*ip*"})
+        "IP_ADDRESS": OperatorConfig("replace", {"new_value": "*ip*"}),
+        "MED_REC_NUM": OperatorConfig("replace", {"new_value": "*med_rec_num*"}),
+        "HPBN": OperatorConfig("replace", {"new_value": "*hpbn*"}),
+        "PSN": OperatorConfig("replace", {"new_value": "*psn*"})
     }
     
 

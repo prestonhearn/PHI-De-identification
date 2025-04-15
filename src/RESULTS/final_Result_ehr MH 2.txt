@@ -1,5 +1,5 @@
 Patient name: *name*
-*dob*
+Date of Birth: *dob*
 SSN: *ssn*
 Date of Visit: 03/07/2024
 Address: *address*

@@ -1,7 +1,11 @@
 type: DOB, start: 27, end: 52, score: 1.0
+type: MED_REC_NUM, start: 75, end: 90, score: 1.0
 type: SSN, start: 96, end: 107, score: 1.0
 type: ADDRESS, start: 143, end: 188, score: 1.0
 type: EMAIL_ADDRESS, start: 216, end: 238, score: 1.0
+type: HPBN, start: 271, end: 284, score: 1.0
+type: PSN, start: 344, end: 357, score: 1.0
+type: MED_REC_NUM, start: 350, end: 357, score: 1.0
 type: TITLE, start: 384, end: 386, score: 1.0
 type: POSTNOMINAL, start: 405, end: 407, score: 1.0
 type: FAX, start: 477, end: 501, score: 1.0
