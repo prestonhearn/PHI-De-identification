@@ -12,7 +12,6 @@ from Recognizer import (
     FaxRecognizer,
     WebURLRecognizer,
     MedicalRecordNumberRecognizer,
-    HealthPlanBeneficiaryNumberRecognizer,
     PacemakerSerialNumberRecognizer
 )
 from presidio_analyzer import AnalyzerEngine
@@ -41,7 +40,6 @@ recognizers = [
     FaxRecognizer(),
     WebURLRecognizer(),
     MedicalRecordNumberRecognizer(),
-    HealthPlanBeneficiaryNumberRecognizer(),
     PacemakerSerialNumberRecognizer()
 ]
 
@@ -57,14 +55,14 @@ for file_path in file_path:
             "TITLE", "PERSON", "POSTNOMINAL", "ADDRESS", "DOB",
             "DATE_TIME", "PHONE_NUMBER", "FAX", "EMAIL_ADDRESS",
             "SSN",  "MEDICAID_ACCOUNT", "WEB_URL", "IP_ADDRESS",
-            "MED_REC_NUM", "HPBN", "PSN"
+            "MED_REC_NUM", "PSN"
         ]
     else:
         entities = [
             "PERSON", "ADDRESS", "DOB", "SSN", "PHONE_NUMBER", 
             "EMAIL_ADDRESS", "TITLE", "POSTNOMINAL", "MEDICAID_ACCOUNT",
             "ALLERGIES", "LAB_RESULTS", "HOSPITAL", "IP_ADDRESS", 
-            "MED_REC_NUM", "HPBN", "PSN"
+            "MED_REC_NUM", "PSN"
         ]
 
     operator_config = {
@@ -85,7 +83,6 @@ for file_path in file_path:
         "WEB_URL": OperatorConfig("replace", {"new_value": "*url*"}),
         "IP_ADDRESS": OperatorConfig("replace", {"new_value": "*ip*"}),
         "MED_REC_NUM": OperatorConfig("replace", {"new_value": "*med_rec_num*"}),
-        "HPBN": OperatorConfig("replace", {"new_value": "*hpbn*"}),
         "PSN": OperatorConfig("replace", {"new_value": "*psn*"})
     }
     

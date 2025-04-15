@@ -160,17 +160,6 @@ class MedicalRecordNumberRecognizer(PatternRecognizer):
 
     def find(self, text, entities=None):
         return find_matches(self.patterns, text, self.supported_entity)
-
-    
-class HealthPlanBeneficiaryNumberRecognizer(PatternRecognizer):
-    def __init__(self):
-        patterns = [
-            Pattern("HPBN", r"\b\d{3}-\d{4}-\d{4}\b", score=1.0)
-        ]
-        super().__init__(supported_entity="HPBN", patterns=patterns)
-
-    def find(self, text, entities=None):
-        return find_matches(self.patterns, text, self.supported_entity)
     
 class PacemakerSerialNumberRecognizer(PatternRecognizer):
     def __init__(self):
