@@ -10,7 +10,8 @@ from Recognizer import (
     LabResultsRecognizer,
     HospitalRecognizer,
     FaxRecognizer,
-    WebURLRecognizer
+    WebURLRecognizer,
+    NumberRecognizer
 )
 from presidio_analyzer import AnalyzerEngine
 from presidio_anonymizer import AnonymizerEngine
@@ -36,7 +37,8 @@ recognizers = [
     LabResultsRecognizer(),
     HospitalRecognizer(),
     FaxRecognizer(),
-    WebURLRecognizer()
+    WebURLRecognizer(),
+    NumberRecognizer()
 ]
 
 for recognizer in recognizers:
@@ -50,7 +52,8 @@ for file_path in file_path:
         entities = [
             "TITLE", "PERSON", "POSTNOMINAL", "ADDRESS", "DOB",
             "DATE_TIME", "PHONE_NUMBER", "FAX", "EMAIL_ADDRESS",
-            "SSN",  "MEDICAID_ACCOUNT", "WEB_URL", "IP_ADDRESS"
+            "SSN",  "MEDICAID_ACCOUNT", "WEB_URL", "IP_ADDRESS",
+            "NUMBER"
         ]
     else:
         entities = [
@@ -75,7 +78,8 @@ for file_path in file_path:
         "HOSPITAL": OperatorConfig("replace", {"new_value": "*hospital*"}),
         "FAX": OperatorConfig("replace", {"new_value": "*fax*"}),
         "WEB_URL": OperatorConfig("replace", {"new_value": "*url*"}),
-        "IP_ADDRESS": OperatorConfig("replace", {"new_value": "*ip*"})
+        "IP_ADDRESS": OperatorConfig("replace", {"new_value": "*ip*"}),
+        "NUMBER": OperatorConfig("replace", {"new_value": "*number*"})
     }
     
 

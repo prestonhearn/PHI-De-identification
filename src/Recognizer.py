@@ -146,3 +146,24 @@ class WebURLRecognizer(PatternRecognizer): # Presidio Analzyer has a URL recogni
 
     def find(self, text, entities=None):
         return find_matches(self.patterns, text, self.supported_entity)
+    
+class NumberRecognizer(PatternRecognizer):
+    def __init__(self):
+        patterns = [
+            Pattern("NUMBER", r"\s?:?\s?"
+                    + r"("
+                        + r"\d{3}-?\d{4}-?\d{4}|\d{6,9}|"
+                        + r"\d{4}\s?\d{4}\s?\d{4}\s?\d{4}|"
+                        + r"[A-Z]{2}\d{4}-[A-Z]{3}\d{5}|"
+                        + r"[A-Z]\d{4}-\d{7}|[A-Z]{2}\d{3}[a-z]-\d{4}|"
+                        + r"[A-Z]\d{4}-\d{7}|[A-Z]{2}\d{3}[a-z]-\d{4}|"
+                        + r"[A-Z]\d{4}-\d{7}|[A-Z]{2}\d{3}[a-z]-\d{4}|"
+                        + r"[A-Z]{5}-[A-Z][a-z]\d{8}|"
+                        + r"[A-Z]{3}\d{4}-[A-Z]{2}\d{5}|"
+                        + r"[A-Z]{2}\d{2}-\d{6}"
+                    + r")", score=0.75)
+        ]
+        super().__init__(supported_entity="NUMBER", patterns=patterns)
+
+    def find(self, text, entities=None):
+        return find_matches(self.patterns, text, self.supported_entity)
