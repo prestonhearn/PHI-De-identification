@@ -80,10 +80,10 @@ class DeIdentificationUI:
         self.key_entry.pack(pady=5)
 
         # Action buttons
-        self.anonymize_btn = ttk.Button(root, text="Anonymize", command=self.anonymize_file)
+        self.anonymize_btn = ttk.Button(root, text="De-Identify", command=self.anonymize_file)
         self.anonymize_btn.pack(pady=5)
 
-        self.deanonymize_btn = ttk.Button(root, text="Deanonymize", command=self.deanonymize_file)
+        self.deanonymize_btn = ttk.Button(root, text="Re-Identify", command=self.deanonymize_file)
         self.deanonymize_btn.pack(pady=5)
 
         # Status
@@ -140,9 +140,11 @@ class DeIdentificationUI:
             self.status_label.config(text=f"Anonymized file saved: {os.path.basename(output_path)}")
 
     def deanonymize_file(self):
-        filepath = filedialog.askopenfilename(filetypes=[("Text files", "*.txt")])
-        if not filepath:
+        if not self.selected_file:
+            messagebox.showerror("Error", "No file selected.")
             return
+        
+        filepath = self.selected_file
 
         meta_path = filepath + ".meta.json"
         if not os.path.exists(meta_path):
@@ -155,6 +157,11 @@ class DeIdentificationUI:
         with open(meta_path, "r", encoding="utf-8") as f:
             metadata = json.load(f)
 
+        entities = [ent for ent, var in self.entity_vars.items() if var.get()]
+        if not entities:
+            messagebox.showwarning("Warning", "No entities selected.")
+            return
+
         operator_results = [
             OperatorResult(
                 start=item["start"],
@@ -162,7 +169,9 @@ class DeIdentificationUI:
                 entity_type=item["entity_type"],
                 operator=item["operator"],
                 text=item["text"]
-            ) for item in metadata
+            ) 
+            for item in metadata
+            if item["entity_type"] in entities
         ]
 
         key = self.key_entry.get()
