@@ -1,27 +1,27 @@
 Patient Name: *name*
 *dob*
-Medical record number:TXB4459-BS34334
+Medical record number*number*
 SSN: *ssn*
 Date of Visit: *date*
 Address: *address*
 Phone: *phone*
 Email: *email*
-Health plan beneficiary number: 888-6765-1110
-Device identifier:PM4437-BTX33457
-Pacemaker serial numbers:B1001-7786432
-Code:772980014
+Health plan beneficiary number*number*
+Device identifier*number*
+Pacemaker serial numbers*number*
+Code*number*
 
 Provider: *title*. *name*, *pn*
 Hospital Name: Greenfield Medical Center
-license number: MD77-786123
+license number*number*
 *fax*
 Address: *address*
 
-Account: *medicaid*
+Account*number*
 Social Worker: *title*. *name*
-Certificate number:SW788a-7898
-Health Insurance: BCBSX-We32445033
-Group no.: 614277
+Certificate number*number*
+Health Insurance*number*
+Group no.*number*
 *fax*
 email: *email*
 URL:*url*
