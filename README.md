@@ -1,22 +1,64 @@
-# PHI-De-identification
-UTD senior project for professor Salih.
+# PHI De-Identification Tool
 
+A graphical application for detecting, anonymizing, and re-identifying Protected Health Information (PHI) in plain text files.
 
-## Virtual Environment and Package Installation Instructions
+This tool was developed as part of a senior project at the University of Texas at Dallas for Professor Salih.
 
-1. `cd` to the root directory
+---
 
-2. To create virtual environment run:\
-    `python -m venv env`
-    > **_NOTE:_** Only necessary to do this step once.
+## 📌 Overview
 
-3. To activate the virtual environment:\
-    On MacOS/Linux run: `source env/bin/activate`\
-    On Windows run: `.\env\Scripts\activate`
+This app uses [Microsoft Presidio](https://github.com/microsoft/presidio) and custom recognizers to:
+- Identify sensitive entities (e.g., SSNs, addresses, DOBs, etc.) in text.
+- Encrypt selected entities using a provided key.
+- Save anonymized files and associated metadata.
+- Re-identify entities using stored metadata and the same key.
 
-4. To install the necessary packages run:\
-    `pip install -r requirements.txt`
+The user interface is built with Python’s Tkinter library for easy file selection and operation.
 
-5. If you install any new packages run:\
-    `pip freeze > requirements.txt`
-    > **_NOTE:_**  If you run this while not in the virtual environment, you will write every package you have ever installed on your local machine to "requirements.txt". Please don't do this
+---
+
+## 🛠 Setup Instructions
+
+1. Clone the repository and `cd` into the root directory.
+
+2. **Create a virtual environment** (only needed once):
+
+    ```bash
+    python -m venv env
+    ```
+
+3. **Activate the virtual environment**:
+
+    - On **Windows**:
+      ```bash
+      .\env\Scripts\activate
+      ```
+
+    - On **macOS/Linux**:
+      ```bash
+      source env/bin/activate
+      ```
+
+4. **Install required packages**:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+5. If you add new packages later:
+
+    ```bash
+    pip freeze > requirements.txt
+    ```
+
+    > ⚠️ **Important:** Only do this inside the virtual environment, or you'll capture system-wide packages by mistake.
+
+---
+
+## 🚀 Running the App
+
+Once the environment is set up and activated:
+
+```bash
+python ./src/PHI-De-Identification.py
